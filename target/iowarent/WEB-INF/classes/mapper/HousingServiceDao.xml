@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.punkgod.iowarent.dao.HousingServiceDao">
+    <insert id="insertHousingService" useGeneratedKeys="true" keyColumn="house_id" keyProperty="houseId">
+        INSERT INTO
+        tb_house_service(owner_id, service_category_id, house_name, house_desc, house_addr, house_addr_num, house_image, house_bedroom_num, house_bathroom_num, house_person_num, house_price, house_floor, house_parking, house_available_date, house_type, create_time, last_edit_time,enable_status)
+        VALUES
+        (#{owner.userId},#{serviceCategory.serviceCategoryId},#{houseName},#{houseDesc},#{houseAddr},#{houseAddrNum},#{houseImg},#{houseBedNum},#{houseBathNum},#{housePersonNum},#{housePrice},#{houseFloor},#{houseParking},#{houseAvailableDate},#{houseType},#{createTime},#{lastEditTime},#{enableStatus})
+    </insert>
+    <update id="updateHousingService" parameterType="com.punkgod.iowarent.entity.HousingService">
+        update tb_house_service
+        <set>
+            <if test="houseName!=null">house_name=#{houseName},</if>
+            <if test="houseDesc!=null">house_desc=#{houseDesc},</if>
+            <if test="houseAddr!=null">house_addr=#{houseAddr},</if>
+            <if test="houseAddrNum!=null">house_addr_num=#{houseAddrNum},</if>
+            <if test="houseImg!=null">house_image=#{houseImg},</if>
+            <if test="houseBedNum!=null">house_bedroom_num=#{houseBedNum},</if>
+            <if test="houseBathNum!=null">house_bathroom_num=#{houseBathNum},</if>
+            <if test="housePersonNum!=null">house_person_num=#{housePersonNum},</if>
+            <if test="housePrice!=null">house_price=#{housePrice},</if>
+            <if test="houseFloor!=null">house_floor=#{houseFloor},</if>
+            <if test="houseParking!=null">house_parking=#{houseParking},</if>
+            <if test="houseAvailableDate!=null">house_available_date=#{houseAvailableDate},</if>
+            <if test="houseType!=null">house_type=#{houseType},</if>
+            <if test="lastEditTime!=null">last_edit_time=#{lastEditTime},</if>
+            <if test="serviceCategory!=null">service_category_id=#{serviceCategory.serviceCategoryId},</if>
+            <if test="enableStatus!=null">enable_status=#{enableStatus}</if>
+
+        </set>
+        where house_id=#{houseId}
+    </update>
+</mapper>
